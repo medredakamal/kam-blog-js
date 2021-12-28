@@ -16,3 +16,17 @@ body {
 .kamblog__app {
   padding: 1rem;
 }
+
+/* Logo */
+.kamblog__logo {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px 0;
+}
+.kamblog__logo > img {
+  width: 135px;
+  margin: auto;
+  object-fit: cover;
+}
