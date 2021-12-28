@@ -47,3 +47,28 @@ body {
   border: var(--borderlight);
   border-radius: 5px;
 }
+
+/** Articles content */
+.kamblog__content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 65rem;
+  margin: 10px auto;
+}
+
+.kamblog__content article {
+  clear: both;
+  max-width: 387px;
+  border: var(--borderlight);
+  border-radius: 5px;
+  padding: 18px;
+  margin: 10px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.kamblog__content article > p {
+  font-size: 13px;
+}
