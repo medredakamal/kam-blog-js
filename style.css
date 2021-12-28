@@ -12,3 +12,7 @@
 body {
   font-family: 'Open Sans';
 }
+
+.kamblog__app {
+  padding: 1rem;
+}
