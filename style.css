@@ -72,3 +72,17 @@ body {
 .kamblog__content article > p {
   font-size: 13px;
 }
+
+/** Responsive */
+
+@media (max-width: 900px) {
+  .kamblog__content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .kamblog__content {
+    grid-template-columns: 1fr;
+  }
+}
