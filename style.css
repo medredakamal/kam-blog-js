@@ -30,3 +30,20 @@ body {
   margin: auto;
   object-fit: cover;
 }
+
+/** Search  */
+.kamblog__searchbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kamblog__searchbar input {
+  width: 32rem;
+  margin: auto;
+  max-width: 100%;
+  font-size: 17px;
+  padding: 8px 15px;
+  border: var(--borderlight);
+  border-radius: 5px;
+}
