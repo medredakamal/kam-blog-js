@@ -4,6 +4,7 @@ const blogconfig = {
 }
 
 // DOMs
+const appDOM = document.getElementById('appcontainer')
 const contentDOM = document.getElementById('kamblog__content')
 const loadingDOM = document.getElementById('kamblog__loading')
 const searchbarDOM = document.getElementById('kamblog__searchbar')
@@ -36,9 +37,20 @@ async function renderPosts() {
   }
 }
 
+// FUNC : Render Pagination
+async function renderPagination() {
+  const paginationDOM = document.createElement('div')
+  paginationDOM.classList.add('kamblog__pagination')
+  paginationDOM.innerHTML = `
+  <button id="kamblog__prev" class="kamblog__prev">Previous</button>
+  <button id="kamblog__next" class="kamblog__next">Next</button>`
+  appDOM.appendChild(paginationDOM)
+}
+
 // Init
 setTimeout(() => {
   renderPosts()
+  renderPagination()
 }, 2000)
 
 // Event Listeners
