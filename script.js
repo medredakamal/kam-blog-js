@@ -1,4 +1,4 @@
-const blogconfig = {
+let blogconfig = {
   limit: 9,
   page: 1,
 }
@@ -12,7 +12,7 @@ const searchbarDOM = document.getElementById('kamblog__searchbar')
 // FUNC : Get posts from API (JSON Placeholder)
 async function loadPostsFromAPI() {
   const res = await fetch(
-    `https://jsonplaceholder.typicode.com/posts?_limit=${blogconfig.limit}&page=${blogconfig.page}`
+    `https://jsonplaceholder.typicode.com/posts?_limit=${blogconfig.limit}&_page=${blogconfig.page}`
   )
   const posts_data = await res.json()
   return posts_data
@@ -34,23 +34,54 @@ async function renderPosts() {
             <p>${post_item.body}</p>`
       contentDOM.appendChild(post_articleDOM)
     })
-    renderPagination()
+    if (null == document.querySelector('#kamblog__pagination')) {
+      renderPagination()
+    }
   }
 }
 
 // FUNC : Render Pagination
 async function renderPagination() {
   const paginationDOM = document.createElement('div')
+  const prevDOM = document.createElement('button')
+  const nextDOM = document.createElement('button')
+
+  paginationDOM.setAttribute('id', 'kamblog__pagination')
   paginationDOM.classList.add('kamblog__pagination')
-  paginationDOM.innerHTML = `
-  <button id="kamblog__prev" class="kamblog__prev">Previous</button>
-  <button id="kamblog__next" class="kamblog__next">Next</button>`
+  prevDOM.classList.add('kamblog__prev')
+  prevDOM.innerText = 'Previous'
+  nextDOM.classList.add('kamblog__next')
+  nextDOM.innerText = 'Next'
+  paginationDOM.appendChild(prevDOM)
+  paginationDOM.appendChild(nextDOM)
+
   appDOM.appendChild(paginationDOM)
+
+  // Event Listeners
+  prevDOM.addEventListener('click', () => {
+    if (blogconfig.page === 0) {
+      blogconfig.page = 0
+    } else if (blogconfig.page < 0) {
+      blogconfig.page = 0
+    } else {
+      blogconfig.page--
+    }
+    contentDOM.innerHTML = ''
+
+    renderPosts()
+    console.log(blogconfig.page)
+  })
+
+  nextDOM.addEventListener('click', () => {
+    blogconfig.page++
+    contentDOM.innerHTML = ''
+
+    renderPosts()
+    console.log(blogconfig.page)
+  })
 }
 
 // Init
 setTimeout(() => {
   renderPosts()
 }, 2000)
-
-// Event Listeners
