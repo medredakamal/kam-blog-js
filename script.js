@@ -34,6 +34,7 @@ async function renderPosts() {
             <p>${post_item.body}</p>`
       contentDOM.appendChild(post_articleDOM)
     })
+    renderPagination()
   }
 }
 
@@ -50,7 +51,6 @@ async function renderPagination() {
 // Init
 setTimeout(() => {
   renderPosts()
-  renderPagination()
 }, 2000)
 
 // Event Listeners
