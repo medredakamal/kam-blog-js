@@ -21,7 +21,10 @@ async function renderPosts() {
   const posts_items = await loadPostsFromAPI()
   if (posts_items) {
     // Remove loading
-    loadingDOM.parentElement.removeChild(loadingDOM)
+    loadingDOM.classList.add('hide')
+    setTimeout(() => {
+      loadingDOM.parentElement.removeChild(loadingDOM)
+    }, 200)
     posts_items.forEach((post_item) => {
       const post_articleDOM = document.createElement('article')
       post_articleDOM.innerHTML = `

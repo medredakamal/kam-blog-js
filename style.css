@@ -13,6 +13,11 @@ body {
   font-family: 'Open Sans';
 }
 
+/** Hide */
+.hide {
+  opacity: 0;
+}
+
 .kamblog__app {
   padding: 1rem;
 }
@@ -83,6 +88,7 @@ body {
   margin: 25px 0;
   font-weight: 800;
   width: 100%;
+  transition: opacity 0.3s ease;
 }
 
 .kamblog__loading > img {
