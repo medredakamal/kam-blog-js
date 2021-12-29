@@ -1,5 +1,5 @@
 const blogconfig = {
-  limit: 10,
+  limit: 9,
   page: 1,
 }
 
