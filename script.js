@@ -1,5 +1,6 @@
-const blog_config = {
+const blogconfig = {
   limit: 10,
+  page: 1,
 }
 
 // DOMs
@@ -10,7 +11,7 @@ const searchbarDOM = document.getElementById('kamblog__searchbar')
 // FUNC : Get posts from API (JSON Placeholder)
 async function loadPostsFromAPI() {
   const res = await fetch(
-    `https://jsonplaceholder.typicode.com/posts?_limit=${blog_config.limit}`
+    `https://jsonplaceholder.typicode.com/posts?_limit=${blogconfig.limit}&page=${blogconfig.page}`
   )
   const posts_data = await res.json()
   return posts_data
