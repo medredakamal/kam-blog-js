@@ -48,12 +48,16 @@ body {
   border-radius: 5px;
 }
 
+/* App Container */
+.appcontainer {
+  max-width: 65rem;
+  margin: 10px auto;
+}
+
 /** Articles content */
 .kamblog__content {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  max-width: 65rem;
-  margin: 10px auto;
 }
 
 .kamblog__content article {
@@ -71,6 +75,13 @@ body {
 
 .kamblog__content article > p {
   font-size: 13px;
+}
+
+/* Hello */
+.kamblog__hello {
+  text-align: center;
+  margin: 25px 0;
+  font-weight: 800;
 }
 
 /** Responsive */
