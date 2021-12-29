@@ -2,8 +2,10 @@ const blog_config = {
   limit: 10,
 }
 
+// DOMs
 const contentDOM = document.getElementById('kamblog__content')
-const helloDOM = document.getElementById('kamblog__hello')
+const loadingDOM = document.getElementById('kamblog__loading')
+const searchbarDOM = document.getElementById('kamblog__searchbar')
 
 // FUNC : Get posts from API (JSON Placeholder)
 async function loadPostsFromAPI() {
@@ -19,7 +21,7 @@ async function renderPosts() {
   const posts_items = await loadPostsFromAPI()
   if (posts_items) {
     // Remove loading
-    helloDOM.parentElement.removeChild(helloDOM)
+    loadingDOM.parentElement.removeChild(loadingDOM)
     posts_items.forEach((post_item) => {
       const post_articleDOM = document.createElement('article')
       post_articleDOM.innerHTML = `
@@ -31,4 +33,8 @@ async function renderPosts() {
 }
 
 // Init
-renderPosts()
+setTimeout(() => {
+  renderPosts()
+}, 2000)
+
+// Event Listeners

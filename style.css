@@ -77,11 +77,16 @@ body {
   font-size: 13px;
 }
 
-/* Hello */
-.kamblog__hello {
+/** Loading */
+.kamblog__loading {
   text-align: center;
   margin: 25px 0;
   font-weight: 800;
+  width: 100%;
+}
+
+.kamblog__loading > img {
+  width: 90px;
 }
 
 /** Responsive */
