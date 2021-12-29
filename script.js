@@ -20,12 +20,13 @@ async function loadPostsFromAPI() {
 
 // FUNC : Render posts from API to DOM
 async function renderPosts() {
+  loadingDOM.classList = 'kamblog__loading'
   const posts_items = await loadPostsFromAPI()
   if (posts_items) {
     // Remove loading
-    loadingDOM.classList.add('hide')
+    loadingDOM.classList.add('hide_animation')
     setTimeout(() => {
-      loadingDOM.parentElement.removeChild(loadingDOM)
+      loadingDOM.classList.add('hidden')
     }, 200)
     posts_items.forEach((post_item) => {
       const post_articleDOM = document.createElement('article')
@@ -45,6 +46,9 @@ async function renderPagination() {
   const paginationDOM = document.createElement('div')
   const prevDOM = document.createElement('button')
   const nextDOM = document.createElement('button')
+  const counterDOM = document.createElement('div')
+  const counterTextDOM = document.createElement('span')
+  const counterNumberDOM = document.createElement('span')
 
   paginationDOM.setAttribute('id', 'kamblog__pagination')
   paginationDOM.classList.add('kamblog__pagination')
@@ -52,33 +56,47 @@ async function renderPagination() {
   prevDOM.innerText = 'Previous'
   nextDOM.classList.add('kamblog__next')
   nextDOM.innerText = 'Next'
+
+  counterDOM.classList.add('kamblog__counter')
+  counterTextDOM.classList.add('kamblog__countertext')
+  counterNumberDOM.classList.add('kamblog__counternumber')
+  counterNumberDOM.setAttribute('id', 'kamblog__counternumber')
+
+  counterTextDOM.innerText = 'Page: '
+  counterNumberDOM.innerText = blogconfig.page || 0
+
   paginationDOM.appendChild(prevDOM)
   paginationDOM.appendChild(nextDOM)
 
+  counterDOM.appendChild(counterTextDOM)
+  counterDOM.appendChild(counterNumberDOM)
+
   appDOM.appendChild(paginationDOM)
+  appDOM.appendChild(counterDOM)
 
   // Event Listeners
   prevDOM.addEventListener('click', () => {
-    if (blogconfig.page === 0) {
-      blogconfig.page = 0
-    } else if (blogconfig.page < 0) {
-      blogconfig.page = 0
+    if (blogconfig.page == 0 || blogconfig.page <= 1) {
+      blogconfig.page = 1
     } else {
       blogconfig.page--
+      contentDOM.innerHTML = ''
+      renderPosts()
+      updateCounter()
     }
-    contentDOM.innerHTML = ''
-
-    renderPosts()
-    console.log(blogconfig.page)
   })
 
   nextDOM.addEventListener('click', () => {
     blogconfig.page++
     contentDOM.innerHTML = ''
-
     renderPosts()
-    console.log(blogconfig.page)
+    updateCounter()
   })
+}
+
+async function updateCounter() {
+  const getCounter = document.getElementById('kamblog__counternumber')
+  getCounter.innerText = blogconfig.page
 }
 
 // Init

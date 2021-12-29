@@ -13,9 +13,13 @@ body {
   font-family: 'Open Sans';
 }
 
-/** Hide */
-.hide {
+/** Clases */
+.hideanimation {
   opacity: 0;
+}
+
+.hidden {
+  display: none;
 }
 
 .kamblog__app {
@@ -63,6 +67,7 @@ body {
 .kamblog__content {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  min-height: 583px;
 }
 
 .kamblog__content article {
